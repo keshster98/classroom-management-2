@@ -11,9 +11,26 @@ function StudentsList(props) {
     >
       <div className="card-body">
         <h3 className="card-title mb-3">Students</h3>
-        {list.map((student_name) => {
-          return <Student num={1} name={student_name} />;
-        })}
+        {list.map((student, index) =>
+          // Method 1
+          // {list.map((student, index) => {
+          //    return <Student num={index + 1} name={student.name} />;
+          // })}
+
+          // Method 2
+          // const { name } = student;
+          // {list.map((student, index) => {
+          //    return <Student num={index + 1} name={name} />;
+          // })}
+
+          // Method 3
+          // {list.map((student, index) => {
+          //    return <Student num={index + 1} {...student} />;
+          // })}
+
+          // Method 4
+          <Student num={index + 1} {...student} />
+        )}
       </div>
     </div>
   );
