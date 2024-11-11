@@ -2,6 +2,7 @@ import AddNewForm from "./components/addNew";
 import StudentsList from "./components/list";
 
 function App() {
+  const list = ["John", "Jane", "Jack"];
   return (
     <div className="container">
       <div
@@ -15,7 +16,7 @@ function App() {
           <AddNewForm />
         </div>
       </div>
-      <StudentsList />
+      <StudentsList list={list} /> {/* list = {list}, where the left list is linked to the list in const list @ list.js while the right list is linked to the list in const list @ app.js */}
     </div>
   );
 }
