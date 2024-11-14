@@ -1,21 +1,12 @@
+import { useState } from "react";
+
 import AddNewForm from "./components/addNew";
 import StudentsList from "./components/list";
 
 function App() {
-  const list = [
-    {
-      id: 1,
-      name: "John",
-    },
-    {
-      id: 2,
-      name: "Jane",
-    },
-    {
-      id: 5, //In the event database is deleted an with auto-increment, a replacement is made
-      name: "Jack",
-    },
-  ];
+  // Change the static list to state list
+  const [list, setList] = useState([]);
+  console.log(list);
   return (
     <div className="container">
       <div
@@ -26,10 +17,23 @@ function App() {
       >
         <div className="card-body">
           <h3 className="card-title mb-3">My Classroom</h3>
-          <AddNewForm />
+          <AddNewForm
+            onNewNameAdded={(studentName) => {
+              // Clone the existing state
+              const newList = [...list];
+              // Push the new item into the newList
+              newList.push({
+                id: Math.random(), // generate id
+                // id: newList.length + 1,
+                name: studentName,
+              });
+              // Update the newList with the setState function
+              setList(newList);
+            }}
+          />
         </div>
       </div>
-      <StudentsList list={list} />  {/* list = {list}, where the left list is linked to the list in const list @ list.js while the right list is linked to the list in const list @ app.js */}
+      <StudentsList list={list} />
     </div>
   );
 }
