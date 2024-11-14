@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
-import AddNewForm from "./components/addnew";
+import AddNewForm from "./components/addNew";
 import StudentsList from "./components/list";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
               const newList = [...list];
               // push the new item into the newList
               newList.push({
-                id: Math.random(), // generate id
+                id: nanoid(), // generate id
                 // id: newList.length + 1,
                 name: studentName,
               });
@@ -35,7 +36,10 @@ function App() {
       <StudentsList
         list={list}
         onStudentDelete={(id) => {
-          console.log(id);
+          // filter OUT the student with the given id
+          const newList = list.filter((s) => s.id !== id);
+          // update the newList with the setState function
+          setList(newList);
         }}
       />
     </div>

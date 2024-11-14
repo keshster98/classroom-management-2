@@ -8,8 +8,13 @@ function Student(props) {
       <button
         className="btn btn-danger btn-sm"
         onClick={() => {
-          // pass the id up to the StudentsList
-          onStudentDelete(id);
+          const confirm = window.confirm(
+            "Are you sure you want to delete this student?"
+          );
+          if (confirm) {
+            // pass the id up to the StudentsList
+            onStudentDelete(id);
+          }
         }}
       >
         <i className="bi bi-trash"></i>
