@@ -15,16 +15,24 @@ function AddNewForm(props) {
             value={studentName}
             required
             onChange={(event) => {
-              // Update the studetName state
+              // update the studetName state
               setStudentName(event.target.value);
             }}
           />
           <button
             className="btn btn-primary btn-sm rounded ms-2"
             onClick={(event) => {
-              // Disable the button submit behaviour
+              // disable the button submit behaviour
               event.preventDefault();
-              onNewNameAdded(studentName);
+              // check for empty string
+              if (studentName === "") {
+                alert("Please enter the name");
+              } else {
+                // passing the name back to the parent component
+                onNewNameAdded(studentName);
+                // reset the state
+                setStudentName("");
+              }
             }}
           >
             Add

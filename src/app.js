@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-import AddNewForm from "./components/addNew";
+import AddNewForm from "./components/addnew";
 import StudentsList from "./components/list";
 
 function App() {
-  // Change the static list to state list
+  // change the static list to state list
   const [list, setList] = useState([]);
-  console.log(list);
   return (
     <div className="container">
       <div
@@ -19,21 +18,26 @@ function App() {
           <h3 className="card-title mb-3">My Classroom</h3>
           <AddNewForm
             onNewNameAdded={(studentName) => {
-              // Clone the existing state
+              // clone the existing state
               const newList = [...list];
-              // Push the new item into the newList
+              // push the new item into the newList
               newList.push({
                 id: Math.random(), // generate id
                 // id: newList.length + 1,
                 name: studentName,
               });
-              // Update the newList with the setState function
+              // update the newList with the setState function
               setList(newList);
             }}
           />
         </div>
       </div>
-      <StudentsList list={list} />
+      <StudentsList
+        list={list}
+        onStudentDelete={(id) => {
+          console.log(id);
+        }}
+      />
     </div>
   );
 }
